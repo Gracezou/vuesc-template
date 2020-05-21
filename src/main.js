@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import axios from 'axios'
+import config from './common/config'
 
 //UI 组件
 import ElementUI from 'element-ui'
@@ -13,9 +14,9 @@ Vue.config.productionTip = false
     axios.defaults.withCredentials = true
     axios.get('./baseUrl.json').then(res => {
         Vue.config.productionTip = false
-        api.setHost(res.data.baseUrl)
+        config.setBase(res.data.baseUrl)
         Vue.use(ElementUI)
-        __vue = new Vue({
+        new Vue({
             router,
             render: h => h(App)
         }).$mount('#app')
